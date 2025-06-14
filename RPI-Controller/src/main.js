@@ -1,18 +1,14 @@
 const { invoke } = window.__TAURI__.core;
 
-let greetInputEl;
-let greetMsgEl;
+let ipInput;
+let status;
 
-async function greet() {
+async function connect_to_ip() {
   // Learn more about Tauri commands at https://tauri.app/develop/calling-rust/
-  greetMsgEl.textContent = await invoke("greet", { name: greetInputEl.value });
+  status.textContent = await invoke("connect", { ipaddr: ipInput.value });
 }
 
 window.addEventListener("DOMContentLoaded", () => {
-  greetInputEl = document.querySelector("#greet-input");
-  greetMsgEl = document.querySelector("#greet-msg");
-  document.querySelector("#greet-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-    greet();
-  });
+  ipInput = document.querySelector("#ip-input");
+  status = connect_to_ip();
 });
