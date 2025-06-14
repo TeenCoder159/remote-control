@@ -1,6 +1,6 @@
 use std::{env, error::Error, process::exit};
 
-mod commands;
+mod command;
 mod stream;
 
 use stream::{Stream, start_server};
